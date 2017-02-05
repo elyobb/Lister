@@ -13,6 +13,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_list"
     tools:context="com.example.brennan.lister.ListActivity">
+    <!-- tasks will go below -->
 
     <TextView
         android:layout_width="wrap_content"
