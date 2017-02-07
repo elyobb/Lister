@@ -1,5 +1,6 @@
 package com.example.brennan.lister;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,7 +20,7 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
+        // default set title to current date, to view current tasks for day
         toolbar.setTitle(getCurrentDateStr());
         setSupportActionBar(toolbar);
 
@@ -51,6 +52,9 @@ public class ListActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        else if (id == R.id.action_calendar){
+            openCalendarActivity(findViewById(id));
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -61,4 +65,11 @@ public class ListActivity extends AppCompatActivity {
         String strDate = mdformat.format(calendar.getTime());
         return strDate;
     }
+
+    public void openCalendarActivity(View view){
+        Intent intent = new Intent(ListActivity.this, CalendarActivity.class);
+        startActivity(intent);
+    }
+
+
 }
