@@ -20,8 +20,18 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        // default set title to current date, to view current tasks for day
-        toolbar.setTitle(getCurrentDateStr());
+        // check if the date was passed by an intent
+        Intent intent = getIntent();
+        String passedDate = intent.getStringExtra("selectedDate");
+        if(passedDate!=null){
+            toolbar.setTitle(passedDate);
+        }
+        else{
+            // default set title to current date, to view current tasks for day
+
+            toolbar.setTitle(getCurrentDateStr());
+        }
+
         setSupportActionBar(toolbar);
 
        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
