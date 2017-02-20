@@ -18,7 +18,7 @@
         android:layout_marginTop="10dp">
 
         <EditText
-            android:id="@+id/taskTitle"
+            android:id="@+id/taskTitleField"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:ems="10"
@@ -33,7 +33,7 @@
         android:layout_marginTop="10dp">
 
         <EditText
-            android:id="@+id/taskDate"
+            android:id="@+id/taskDateField"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:ems="10"

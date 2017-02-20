@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="date_format_abbreviated">E, MMM d, yyyy</string>
     <string name="date_format_full">E, MMMM d, yyyy</string>
+    <string name="date_format_db">MM-dd-yyyy</string>
     <string name="title_activity_calendar">CalendarActivity</string>
     <string-array name="priority_array">
         <item>Low Priority</item>
