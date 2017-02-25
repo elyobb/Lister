@@ -11,7 +11,7 @@
     tools:context="com.example.brennan.lister.ListActivity">
     <!-- tasks will go below -->
 
-    <ListView
+    <com.example.brennan.lister.TaskListView
         android:id="@+id/taskList"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

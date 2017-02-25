@@ -3,4 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <item name="green" type="color">#83c183</item>
+    <item name="yellow" type="color">#e8d64e</item>
+    <item name="red" type="color">#db4848</item>
+
+
+    <integer-array name="androidcolors">
+        <item>@color/yellow</item>
+        <item>@color/green</item>
+        <item>@color/red</item>
+    </integer-array>
 </resources>
