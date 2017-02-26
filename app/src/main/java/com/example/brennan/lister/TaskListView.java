@@ -1,6 +1,7 @@
 package com.example.brennan.lister;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,17 +12,18 @@ import android.widget.ListView;
 import android.widget.AdapterView;
 
 import java.util.ArrayList;
+
 import com.example.brennan.lister.util.AnimationHelper;
 
 /**
  * Created by Brennan on 2/25/2017.
  */
 
-public class TaskListView extends ListView implements AdapterView.OnItemLongClickListener {
+public class TaskListView extends ListView {
 
     private TaskAdapter taskAdapter;
 
-    public TaskListView(Context context, AttributeSet attrs, int defStyle){
+    public TaskListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
@@ -36,6 +38,7 @@ public class TaskListView extends ListView implements AdapterView.OnItemLongClic
         init();
     }
 
+
     public void addTask(ArrayList<Task> tasks) {
         taskAdapter = new TaskAdapter(getContext(), tasks);
         setAdapter(taskAdapter);
@@ -43,7 +46,6 @@ public class TaskListView extends ListView implements AdapterView.OnItemLongClic
 
     private void init() {
         setPopulationAnimation();
-        setOnItemLongClickListener(this);
     }
 
     // Add a new animation for when the view is layed out
@@ -58,12 +60,8 @@ public class TaskListView extends ListView implements AdapterView.OnItemLongClic
         setLayoutAnimation(controller);
     }
 
+
     // Add a listener so we know when the user is long pressing on one of our rows
     // we then pass this interaction to the adapter
-    @Override
-    public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id) {
-        Task task = taskAdapter.getItem(position);
-        taskAdapter.remove(task);
-        return true;
-    }
+
 }

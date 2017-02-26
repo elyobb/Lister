@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,10 +20,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,20 +37,22 @@ import android.widget.Toast;
 import com.example.brennan.lister.db.TaskContract;
 import com.example.brennan.lister.db.TaskDbHelper;
 import com.example.brennan.lister.db.TextValidator;
+import com.example.brennan.lister.util.AnimationHelper;
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 
 public class ListActivity extends AppCompatActivity {
     final Context context = this;
-    private TaskListView taskListView;
+    private ListView taskListView;
     private TaskDbHelper taskDbHelper;
     private TaskAdapter taskAdapter;
     private String titleDateDbFormat = "";
-
     /**
      * interface method implementations
      **/
@@ -70,8 +79,16 @@ public class ListActivity extends AppCompatActivity {
         }
         setSupportActionBar(toolbar);
         taskDbHelper = new TaskDbHelper(this);
-        taskListView = (TaskListView) findViewById(R.id.taskList);
+        taskListView = (ListView) findViewById(R.id.taskList);
+        setPopulationAnimation(taskListView);
+        taskListView.setLongClickable(true);
         populateTasksForTitleDate();
+        taskListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ListActivity.this, String.valueOf(position), Toast.LENGTH_LONG).show();
+            }
+        });
+
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -190,9 +207,25 @@ public class ListActivity extends AppCompatActivity {
         } else if (id == R.id.action_calendar) {
             openCalendarActivity(findViewById(id));
         }
+        else if (id == R.id.action_sort_desc){
+            sortByPriorityDesc();
+        }
+        else if (id == R.id.action_sort_asc){
+            sortByPriorityAsc();
+        }
         return super.onOptionsItemSelected(item);
     }
 
+
+    private void setPopulationAnimation(ListView v) {
+        AnimationSet set = new AnimationSet(true);
+
+        Animation animation = AnimationHelper.createFadeInAnimation();
+        set.addAnimation(animation);
+
+        LayoutAnimationController controller = new LayoutAnimationController(set, 0.5f);
+        v.setLayoutAnimation(controller);
+    }
 
     /**----------------------------------------------
      * utility functions
@@ -279,6 +312,25 @@ public class ListActivity extends AppCompatActivity {
         return allValid;
     }
 
+    public void sortByPriorityDesc(){
+        taskAdapter.sort(new Comparator<Task>() {
+            @Override
+            public int compare(Task t1, Task t2) {
+                return t2.getPriorityInt() - (t1.getPriorityInt());
+            }
+        });
+        taskAdapter.notifyDataSetChanged();
+    }
+
+    public void sortByPriorityAsc(){
+        taskAdapter.sort(new Comparator<Task>() {
+            @Override
+            public int compare(Task t1, Task t2) {
+                return t1.getPriorityInt() - (t2.getPriorityInt());
+            }
+        });
+        taskAdapter.notifyDataSetChanged();
+    }
 
     /**----------------------------------------------
      * database functionality
@@ -336,6 +388,9 @@ public class ListActivity extends AppCompatActivity {
      * @param view the calling object
      */
     public void deleteTask(View view) {
+
+
+
         View parent = (View) view.getParent();
         TextView taskTextView = (TextView) parent.findViewById(R.id.taskTitle);
         String task = String.valueOf(taskTextView.getText());
@@ -344,6 +399,22 @@ public class ListActivity extends AppCompatActivity {
                 TaskContract.TaskEntry.COL_TASK_TITLE + " = ?",
                 new String[]{task});
         db.close();
-        populateTasksForTitleDate();
+
+        ListView taskListView = (ListView) parent.getParent();
+        final int position = taskListView.getPositionForView(parent);
+        Toast.makeText(ListActivity.this, String.valueOf(position), Toast.LENGTH_LONG).show();
+
+        final Animation animation = AnimationUtils.loadAnimation(ListActivity.this, android.R.anim.slide_out_right);
+        parent.startAnimation(animation);
+        Handler handle = new Handler();
+        handle.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                taskAdapter.remove(taskAdapter.getItem(position));
+                taskAdapter.notifyDataSetChanged();
+                animation.cancel();
+            }
+        },100);
+        //populateTasksForTitleDate();
     }
 }

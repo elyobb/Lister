@@ -27,4 +27,17 @@ public class Task {
     public String getDate(){
         return date;
     }
+
+    public int getPriorityInt(){
+        if (priority.equals("Low Priority")) {
+
+            return 0;
+        }
+        else if (priority.equals("Normal Priority")){
+            return 1;
+        }
+        else{
+            return 2;
+        }
+    }
 }
