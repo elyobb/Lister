@@ -89,8 +89,7 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-
-
+        // the floating action button and all its listener functionality
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,7 +215,11 @@ public class ListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    /**
+     * Animates the task list in to the view (fades in one by one)
+     * @param v
+     *          the list view to show population animation for
+     */
     private void setPopulationAnimation(ListView v) {
         AnimationSet set = new AnimationSet(true);
 
@@ -311,6 +314,7 @@ public class ListActivity extends AppCompatActivity {
         }
         return allValid;
     }
+
 
     public void sortByPriorityDesc(){
         taskAdapter.sort(new Comparator<Task>() {

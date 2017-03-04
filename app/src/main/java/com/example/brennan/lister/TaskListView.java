@@ -48,7 +48,7 @@ public class TaskListView extends ListView {
         setPopulationAnimation();
     }
 
-    // Add a new animation for when the view is layed out
+    // Add a new animation for when the view is laid out
     // this will add our items to the list in a nice controlled fashion top to bottom
     private void setPopulationAnimation() {
         AnimationSet set = new AnimationSet(true);
@@ -59,9 +59,4 @@ public class TaskListView extends ListView {
         LayoutAnimationController controller = new LayoutAnimationController(set, 0.5f);
         setLayoutAnimation(controller);
     }
-
-
-    // Add a listener so we know when the user is long pressing on one of our rows
-    // we then pass this interaction to the adapter
-
 }
