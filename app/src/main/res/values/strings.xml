@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Lister</string>
     <string name="action_settings">Settings</string>
+    <string name="action_sort_desc">Priority Sort: Desc</string>
+    <string name="action_sort_asc">Priority Sort: Asc</string>
+    <string name="date_format_abbreviated">E, MMM d, yyyy</string>
+    <string name="date_format_full">E, MMMM d, yyyy</string>
+    <string name="date_format_db">MM-dd-yyyy</string>
+    <string name="title_activity_calendar">CalendarActivity</string>
+    <string-array name="priority_array">
+        <item>Low Priority</item>
+        <item>Normal Priority</item>
+        <item>High Priority</item>
+    </string-array>
 </resources>

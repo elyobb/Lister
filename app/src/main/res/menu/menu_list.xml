@@ -1,9 +1,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.brennan.lister.ListActivity" >
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+    tools:context="com.example.brennan.lister.ListActivity">
+
+    <item
+        android:id="@+id/action_calendar"
+        android:icon="@drawable/ic_calendar"
         android:orderInCategory="100"
+        android:title="Calendar"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_sort_desc"
+        android:orderInCategory="100"
+        android:title="@string/action_sort_desc"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_sort_asc"
+        android:orderInCategory="100"
+        android:title="@string/action_sort_asc"
         app:showAsAction="never" />
 </menu>

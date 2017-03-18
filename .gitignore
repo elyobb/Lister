@@ -1,4 +1,6 @@
 *.iml
+.idea/
+-$ster*
 .gradle
 /local.properties
 /.idea/workspace.xml
