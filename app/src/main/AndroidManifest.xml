@@ -21,7 +21,11 @@
         <activity
             android:name=".CalendarActivity"
             android:label="@string/title_activity_calendar"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PersistentListActivity"
+            android:label="Persistent Task List"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -11,10 +11,11 @@
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_view_persistent_list"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:icon="@drawable/ic_action_persistent_tasks"
+        android:title="View Persistent List"
+        app:showAsAction="always" />
     <item
         android:id="@+id/action_sort_desc"
         android:orderInCategory="100"
