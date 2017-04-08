@@ -1,7 +1,9 @@
 *.iml
+.idea/misc.xml
 .idea/
 -$ster*
 .gradle
+*/databases/*
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
