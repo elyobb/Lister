@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
-
+import com.example.brennan.lister.util.Utility;
 /**
  * Created by Brennan on 3/19/2017.
  */
@@ -176,10 +176,10 @@ public class PersistentListActivity extends AppCompatActivity{
             openCalendarActivity(findViewById(id));
         }
         else if (id == R.id.action_sort_desc){
-            sortByPriorityDesc();
+            Utility.sortByPriorityDesc(taskAdapter);
         }
         else if (id == R.id.action_sort_asc){
-            sortByPriorityAsc();
+            Utility.sortByPriorityAsc(taskAdapter);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -192,27 +192,6 @@ public class PersistentListActivity extends AppCompatActivity{
     private void openCalendarActivity(View view) {
         Intent intent = new Intent(PersistentListActivity.this, CalendarActivity.class);
         startActivity(intent);
-    }
-
-
-    public void sortByPriorityDesc(){
-        taskAdapter.sort(new Comparator<Task>() {
-            @Override
-            public int compare(Task t1, Task t2) {
-                return t2.getPriorityInt() - (t1.getPriorityInt());
-            }
-        });
-        taskAdapter.notifyDataSetChanged();
-    }
-
-    public void sortByPriorityAsc(){
-        taskAdapter.sort(new Comparator<Task>() {
-            @Override
-            public int compare(Task t1, Task t2) {
-                return t1.getPriorityInt() - (t2.getPriorityInt());
-            }
-        });
-        taskAdapter.notifyDataSetChanged();
     }
 
     /**

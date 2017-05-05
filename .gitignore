@@ -2,6 +2,8 @@
 .idea/misc.xml
 .idea/
 -$ster*
+.project
+/myapplication
 .gradle
 */databases/*
 /local.properties
